@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Valley of Ages · 从史前到现代的山谷</title>
+<meta name="description" content="一座地形永不改变的山谷，在五个时代里改变它自己的天际线。Three.js 实时 3D。" />
+<meta name="color-scheme" content="dark" />
+<link rel="stylesheet" href="./styles.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "three/addons/controls/OrbitControls.js": "./vendor/OrbitControls.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<canvas id="stage" aria-label="一座随时代变化的山谷三维场景，可用时间轴切换时代"></canvas>
+<div class="scrim" aria-hidden="true"></div>
+
+<header class="masthead">
+  <h1 class="masthead__title">Valley of Ages</h1>
+  <p class="masthead__meta">
+    <span>fixed terrain</span>
+    <span>11,000 years</span>
+    <span class="masthead__hint">drag to orbit · R recentres</span>
+  </p>
+</header>
+
+<div class="strata" aria-hidden="true">
+  <p class="strata__scale">11,000 yr</p>
+  <div class="strata__column">
+    <i style="--dur:8200"></i>
+    <i style="--dur:2148"></i>
+    <i style="--dur:533"></i>
+    <i style="--dur:145"></i>
+    <i style="--dur:40"></i>
+    <span class="strata__marker" data-marker></span>
+  </div>
+  <p class="strata__note"><b>0.4%</b> of the record</p>
+</div>
+
+<section class="caption">
+  <p class="caption__year" data-year>9,000 BCE</p>
+  <h2 class="caption__era" data-era>Palaeolithic</h2>
+  <p class="caption__blurb" data-blurb>猎人把营地扎在河湾上方的台地，兽皮棚、火塘，和远山脊上的猛犸。</p>
+</section>
+
+<div class="transport">
+  <div class="transport__row">
+    <input id="t" class="transport__range" type="range" min="0" max="4" step="0.001" value="0"
+           aria-label="时代时间轴" />
+    <button class="transport__btn" data-play type="button" aria-pressed="false" data-play-label>play</button>
+    <button class="transport__btn transport__btn--quiet" data-recentre type="button">recentre</button>
+  </div>
+  <ol class="ticks" data-ticks>
+    <li><button type="button" data-step="0">stone age</button></li>
+    <li><button type="button" data-step="1">iron age</button></li>
+    <li><button type="button" data-step="2">medieval</button></li>
+    <li><button type="button" data-step="3">industrial</button></li>
+    <li><button type="button" data-step="4">now</button></li>
+  </ol>
+</div>
+
+<p class="boot" data-boot>carving the valley…</p>
+<p class="sr-only" aria-live="polite" data-live></p>
+
+<noscript><p class="boot boot--fail">This scene needs JavaScript and WebGL.</p></noscript>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
